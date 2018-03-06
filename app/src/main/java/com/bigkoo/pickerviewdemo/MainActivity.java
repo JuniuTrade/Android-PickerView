@@ -195,11 +195,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setType(new boolean[]{true, true, true, false, false, false})
                 .setLabel("", "", "", "", "", "")
                 .isCenterLabel(false)
+                .setTitleText("选择时间")
+                .setTitleHeight(100)
+                .setTitleBgColor(0xFFFFFFFF)
                 .setDividerColor(Color.DKGRAY)
                 .setContentSize(21)
                 .setDate(selectedDate)
                 .setRangDate(startDate, endDate)
-//                .setBackgroundId(0x00FFFFFF) //设置外部遮罩颜色
+                .setBackgroundId(0x00FFFFFF) //设置外部遮罩颜色
                 .setDecorView(null)
                 .build();
     }
@@ -243,6 +246,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setCancelColor(Color.WHITE)*/
                /*.gravity(Gravity.RIGHT)// default is center*/
                 .setDate(selectedDate)
+                .setTitleText("选择时间")
                 .setRangDate(startDate, endDate)
                 .setLayoutRes(R.layout.pickerview_custom_time, new CustomListener() {
 

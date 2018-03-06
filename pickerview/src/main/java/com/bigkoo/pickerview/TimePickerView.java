@@ -77,6 +77,8 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
     private static final String TAG_SUBMIT = "submit";
     private static final String TAG_CANCEL = "cancel";
 
+    private int Size_Title_Height = 60;//title的高度
+
     //构造方法
     public TimePickerView(Builder builder) {
         super(builder.context);
@@ -125,6 +127,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         this.dividerType = builder.dividerType;
         this.backgroundId = builder.backgroundId;
         this.decorView = builder.decorView;
+        this.Size_Title_Height = builder.Size_Title_Height;
         initView(builder.context);
     }
 
@@ -174,6 +177,8 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         private float lineSpacingMultiplier = 1.6F;
 
         private boolean isDialog;//是否是对话框模式
+
+        private int Size_Title_Height = 60;//title的高度
 
         private String label_year, label_month, label_day, label_hours, label_mins, label_seconds;//单位
         private int xoffset_year, xoffset_month, xoffset_day, xoffset_hours, xoffset_mins, xoffset_seconds;//单位
@@ -380,6 +385,11 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
             return this;
         }
 
+        public Builder setTitleHeight(int titleHeight) {
+            Size_Title_Height = titleHeight;
+            return this;
+        }
+
         public Builder setLabel(String label_year, String label_month, String label_day, String label_hours, String label_mins, String label_seconds) {
             this.label_year = label_year;
             this.label_month = label_month;
@@ -444,8 +454,8 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
             btnCancel.setOnClickListener(this);
 
             //设置文字
-            btnSubmit.setText(TextUtils.isEmpty(Str_Submit) ? context.getResources().getString(R.string.pickerview_submit) : Str_Submit);
-            btnCancel.setText(TextUtils.isEmpty(Str_Cancel) ? context.getResources().getString(R.string.pickerview_cancel) : Str_Cancel);
+            btnSubmit.setText(TextUtils.isEmpty(Str_Submit) ? "" : Str_Submit);
+            btnCancel.setText(TextUtils.isEmpty(Str_Cancel) ? "" : Str_Cancel);
             tvTitle.setText(TextUtils.isEmpty(Str_Title) ? "" : Str_Title);//默认为空
 
             //设置文字颜色
@@ -457,8 +467,13 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
             btnSubmit.setTextSize(Size_Submit_Cancel);
             btnCancel.setTextSize(Size_Submit_Cancel);
             tvTitle.setTextSize(Size_Title);
+            //设置标题背景
             RelativeLayout rv_top_bar = (RelativeLayout) findViewById(R.id.rv_topbar);
             rv_top_bar.setBackgroundColor(Color_Background_Title == 0 ? pickerview_bg_topbar : Color_Background_Title);
+            //设置标题背景高度
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) rv_top_bar.getLayoutParams();
+            params.height = Size_Title_Height;
+            rv_top_bar.setLayoutParams(params);
         } else {
             customListener.customLayout(LayoutInflater.from(context).inflate(layoutRes, contentContainer));
         }
