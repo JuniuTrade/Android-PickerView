@@ -115,6 +115,7 @@ public class JsonDataActivity extends AppCompatActivity implements View.OnClickL
                 .setDividerColor(Color.BLACK)
                 .setTextColorCenter(Color.BLACK) //设置选中项文字颜色
                 .setContentTextSize(20)
+                .isDialog(true)
                 .build();
 
         /*pvOptions.setPicker(options1Items);//一级选择器

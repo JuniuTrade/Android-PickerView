@@ -331,7 +331,7 @@ public class BasePickerView {
             mDialog = new Dialog(context, R.style.custom_dialog2);
             mDialog.setCancelable(cancelable);//不能点外面取消,也不 能点back取消
             mDialog.setContentView(dialogView);
-
+            mDialog.getWindow().setGravity(Gravity.BOTTOM);
             mDialog.getWindow().setWindowAnimations(R.style.pickerview_dialogAnim);
             mDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
